@@ -17,6 +17,59 @@
         <jaxb.version>2.3.0</jaxb.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>profile-postgres</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <database.driver_class_name>org.postgresql.Driver</database.driver_class_name>
+                <database.url>jdbc:postgresql://127.0.0.1:5432/bulls_and_cows</database.url>
+                <database.username>postgres</database.username>
+                <database.password>postgres</database.password>
+
+                <jpa.show_sql>true</jpa.show_sql>
+                <jpa.generate_ddl>true</jpa.generate_ddl>
+                <jpa.database>POSTGRESQL</jpa.database>
+                <jpa.database_platform>org.hibernate.dialect.PostgreSQL95Dialect</jpa.database_platform>
+                <jpa.hibernate.hbm2ddl.auto>validate</jpa.hibernate.hbm2ddl.auto>
+                <jpa.hibernate.format_sql>false</jpa.hibernate.format_sql>
+
+                <h2.scope>test</h2.scope>
+            </properties>
+            <dependencies>
+                <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>42.2.1</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>profile-h2</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <database.driver_class_name>org.h2.Driver</database.driver_class_name>
+                <database.url>jdbc:h2:mem:h2db;DB_CLOSE_DELAY=-1</database.url>
+                <database.username>sa</database.username>
+                <database.password>sa</database.password>
+
+                <jpa.show_sql>true</jpa.show_sql>
+                <jpa.generate_ddl>true</jpa.generate_ddl>
+                <jpa.database>H2</jpa.database>
+                <jpa.database_platform>org.hibernate.dialect.H2Dialect</jpa.database_platform>
+                <jpa.hibernate.hbm2ddl.auto>create-drop</jpa.hibernate.hbm2ddl.auto>
+                <jpa.hibernate.format_sql>false</jpa.hibernate.format_sql>
+
+                <h2.scope>compile</h2.scope>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -37,6 +90,14 @@
     </dependencyManagement>
 
     <build>
+        <resources>
+            <resource>
+                <directory>
+                    ./src/main/resources/
+                </directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -201,30 +262,26 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.5.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.1</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.196</version>
-            <scope>test</scope>
+            <scope>${h2.scope}</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
-        </dependency><!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.version}</version>
-        </dependency><!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>

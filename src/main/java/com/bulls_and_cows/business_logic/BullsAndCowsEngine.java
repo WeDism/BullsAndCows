@@ -42,8 +42,8 @@ public final class BullsAndCowsEngine {
         if (string.length() < 3) return false;
 
         boolean validate = true;
+        char[] chars = string.toCharArray();
         for (int i = 0; i < string.length(); i++) {
-            char[] chars = string.toCharArray();
             int countMatches = StringUtils.countMatches(string, chars[i]);
             if (countMatches > 1 || !GAME_SYMBOLS.contains(String.valueOf(chars[i]))) validate = false;
         }
