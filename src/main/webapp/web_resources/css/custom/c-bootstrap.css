@@ -1,0 +1,48 @@
+.c-row {
+    margin-top: +15px;
+    margin-bottom: +15px;
+}
+
+.header-btn {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+}
+
+.congratulate {
+    background-color: limegreen;
+}
+
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.nav-link {
+    font-size: 1.25rem;
+}
+
+.navbar-brand:first-child {
+    font-size: 1.5rem;
+}
+
+button.delete-user-of-button, button.delete-request-friend-of-button {
+    background: Transparent no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: grey;
+}
+
+nav.col-2 {
+    border-radius: 0.5rem 0 0 0.5rem
+}
+
+nav.col-10 {
+    border-radius: 0 0.5rem 0.5rem 0
+}
