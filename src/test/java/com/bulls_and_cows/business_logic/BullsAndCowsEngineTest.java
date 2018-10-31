@@ -7,10 +7,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.bulls_and_cows.business_logic.BullsAndCowsMatcherTestData.*;
-import static com.bulls_and_cows.repositories.game.GameRepositoryTestData.*;
-import static com.bulls_and_cows.repositories.step_game.StepGameRepositoryTestData.*;
+import static com.bulls_and_cows.repositories.game.GameRepositoryTestData.FIRST_IVAN_GAME_TEMPLATE;
+import static com.bulls_and_cows.repositories.step_game.StepGameRepositoryTestData.FIFTH_STEP_GAME_TEMPLATE;
 import static org.hamcrest.CoreMatchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 public class BullsAndCowsEngineTest extends DbInit {
     @Autowired

@@ -12,9 +12,7 @@ import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class GameControllerTest extends ControllerInit {
     @Before
@@ -30,8 +28,9 @@ public class GameControllerTest extends ControllerInit {
                 .session(this.mockHttpSession);
 
         ResultActions perform = this.mockMvc.perform(requestBuilder);
-        perform.andExpect(status().is2xxSuccessful())
-                .andExpect(view().name("game"));
+        perform.andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/game/resume"));
+
         Assert.assertThat(2, is(this.userRepository.findOne(this.userIvan.getNickname()).getGames().size()));
 
     }
@@ -41,21 +40,26 @@ public class GameControllerTest extends ControllerInit {
         MockHttpServletRequestBuilder requestBuilder = get("/game/resume")
                 .session(this.mockHttpSession);
 
+        Optional<Game> notCompletedGame = GameHelper.findNotCompletedGame(this.userIvan.getGames());
+        Assert.assertTrue(notCompletedGame.isPresent());
+
         ResultActions perform = this.mockMvc.perform(requestBuilder);
         perform.andExpect(status().is2xxSuccessful())
                 .andExpect(view().name("game"))
-                .andExpect(model().attribute("game", this.userIvan.getGames().stream()
-                        .filter(game -> game.getGameEndTime() == null)
-                        .findFirst().get()));
+                .andExpect(model().attribute("gameSteps",
+                        GameHelper.getImmutablePairStepGameAndResult(
+                                this.stepGameRepository.findByGame(notCompletedGame.get()),
+                                this.bullsAndCowsEngine)));
 
-        Optional<Game> notCompletedGame = GameHelper.findNotCompletedGame(userIvan.getGames());
+
+        notCompletedGame = GameHelper.findNotCompletedGame(this.userIvan.getGames());
         Assert.assertTrue(notCompletedGame.isPresent());
         notCompletedGame.ifPresent(game -> userIvan.getGames().remove(game));
         this.userRepository.save(this.userIvan);
 
         perform = this.mockMvc.perform(requestBuilder);
         perform.andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/user"))
-                .andExpect(model().attributeDoesNotExist("game"));
+                .andExpect(redirectedUrl("/user"))
+                .andExpect(model().attributeDoesNotExist("gameSteps"));
     }
 }

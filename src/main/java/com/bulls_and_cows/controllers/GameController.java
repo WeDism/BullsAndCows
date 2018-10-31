@@ -7,7 +7,6 @@ import com.bulls_and_cows.models.StepGame;
 import com.bulls_and_cows.models.User;
 import com.bulls_and_cows.repositories.StepGameRepository;
 import com.bulls_and_cows.repositories.UserRepository;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequestMapping(value = "game")
 @Controller
@@ -69,9 +67,7 @@ public class GameController {
             });
 
             return new ModelAndView("game")
-                    .addObject("gameSteps", gameSteps.stream().map
-                            (stepGame -> ImmutablePair.of(stepGame, this.bullsAndCowsEngine.getResult(game, stepGame)))
-                            .collect(Collectors.toList()));
+                    .addObject("gameSteps", GameHelper.getImmutablePairStepGameAndResult(gameSteps, this.bullsAndCowsEngine));
         }
         return new ModelAndView("redirect:/user");
     }

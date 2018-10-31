@@ -28,8 +28,8 @@
                             <form id="loginForm" class="form-sign-in" action="<c:url value="/login"/>" method="post">
                                 <input class="form-control" type="text" name="nickname" placeholder="Nickname" required autofocus>
                                 <input class="form-control" type="password" name="password" placeholder="Password" required>
-                                <button class="btn btn-lg btn-success btn-block" type="button" value="user1">Sign as test user</button>
                                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in">
+                                <button class="btn btn-lg btn-success btn-block" type="button" value="user1" style="visibility: hidden">Sign as test user</button>
                             </form>
                         </div>
                         <div class="tab-pane fade" id="v-pills-sign-up" role="tabpanel" aria-labelledby="v-pills-sign-up-tab">
@@ -37,8 +37,8 @@
                                 <input class="form-control" type="email" name="email" placeholder="Email" required>
                                 <input class="form-control" type="text" name="nickname" placeholder="Nickname" required>
                                 <input class="form-control" type="password" name="password" placeholder="Password" required>
-                                <button class="btn btn-lg btn-success btn-block" type="button" value="user1">Sign as test user</button>
                                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Register">
+                                <button class="btn btn-lg btn-success btn-block" type="button" value="user1" style="visibility: hidden">Sign as test user</button>
                             </form>
                         </div>
                     </div>

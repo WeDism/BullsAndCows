@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.bulls_and_cows.models.User.Role.*;
+import static com.bulls_and_cows.models.User.Role.USER;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @Controller

@@ -12,8 +12,8 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import java.util.List;
 import java.util.Optional;
 
-import static com.bulls_and_cows.business_logic.consts.GameConstants.*;
 import static com.bulls_and_cows.business_logic.BullsAndCowsMatcherTestData.*;
+import static com.bulls_and_cows.business_logic.consts.GameConstants.GAME_STATE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

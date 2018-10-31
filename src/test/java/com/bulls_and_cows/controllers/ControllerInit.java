@@ -1,5 +1,6 @@
 package com.bulls_and_cows.controllers;
 
+import com.bulls_and_cows.business_logic.BullsAndCowsEngine;
 import com.bulls_and_cows.models.User;
 import com.bulls_and_cows.repositories.DbInit;
 import org.junit.Ignore;
@@ -27,6 +28,8 @@ public class ControllerInit extends DbInit {
     protected Authentication authentication;
     @Autowired
     protected WebApplicationContext webApplicationContext;
+    @Autowired
+    protected BullsAndCowsEngine bullsAndCowsEngine;
     protected MockMvc mockMvc;
 
     @Override

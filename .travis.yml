@@ -1,0 +1,23 @@
+language: java
+sudo: false
+dist: trusty
+jdk: oraclejdk8
+addons:
+  apt:
+    packages:
+    - oracle-java8-installer
+deploy:
+  provider: releases
+  api_key:
+    secure: RFVLsAN7chYXcoJ/ohCzSLDrb+Tau0Z3y7sbfYIuZNM2yCAL18wMUbws+9zcVMWINlXPNBkW87xtag6EwTt301ZhcWtB0zPKxqq30D7v2fec4cNzJQnwwPnWJCNpUy4FaZ1xXXigNJEubvm/fk1VwUIDYYiStqLLuk+9I0O6MY/QW02LqwSt0DKQksVmcjqaq1P+sOct+98SfSzwdnc0UzB9RoIQKoUmH5OAfMl9A8wyMZojxI7gSQmeKrYrdTMCghPPUqJqWtXR2fm56GfnWn9QNUWWXlru4pFUAq/JpuV9gHkU0+jtJqSkLSrA8YRSbbQTGZrJn2PKRBlOeWtq1eoWYoQDrN7XHes4lERtWsMazvjYvTtqPSGxqHJ5l7oimtVzX1BY7qF7llLUcj00x3BInJEDzgO9jUsA3YrWxtg3dExL7gshikgQV5lHxHyBNnzFoxwlvOl6VgtCR6I3j9vSm5Nu7s2pzmSXUm+O8FwW3VoBdO+wDd1l9CDxpD6Nypbm3e3PwUiGH7qqRMBp/5KfWDfHkfb8GtTkV+Zg8j1PfB/Ht9UZM0kJk5JonLpP3Qhq63kf3ZGiRpUsX90OS4Ua5vvEJSg8NYRizkkEZx3JOFBovzuf9aFogAP9EEQFcLJuttPZkqCYjpuX5msjKur+XO/tA+EzgVcGNOiGi20=
+  file: target/BullsAndCows-1.0.war
+  on:
+    repo: WeDism/BullsAndCows
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+notifications:
+  email:
+    recipients:
+    - wedinakawer58@gnail.com
+    on_success: never
+    on_failure: always

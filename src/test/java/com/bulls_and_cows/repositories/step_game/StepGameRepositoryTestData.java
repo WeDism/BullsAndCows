@@ -4,7 +4,7 @@ import com.bulls_and_cows.models.StepGame;
 
 import java.time.LocalDateTime;
 
-import static com.bulls_and_cows.repositories.game.GameRepositoryTestData.*;
+import static com.bulls_and_cows.repositories.game.GameRepositoryTestData.FIRST_IVAN_GAME_TEMPLATE;
 
 public interface StepGameRepositoryTestData {
     LocalDateTime DATE_TIME = LocalDateTime.now();
