@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "user_entity")
-public class User {
+public class User implements Serializable {
     private String nickname;
     private String password;
     private Role role;
