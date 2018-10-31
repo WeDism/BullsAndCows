@@ -31,12 +31,49 @@ const addLiInUl = function (result, message) {
     if (list.length === 1) list.after(getTotalMessage());
     else $('.list-unstyled:last').append(getTotalMessage());
 };
-const sendAttempt = function () {
-    const $controlPanel = $('#controlPanel select');
-    const path = $('.container:first');
+const validateMessage = function (message) {
+        for (let i = 0; i < message.length - 1; i++) {
+            for (let j = i + 1; j < message.length; j++) {
+                if (message[i] === message[j]) return false;
+            }
+        }
+        return true;
+    }
+;
+const validateYourChoice = function ($controlPanel) {
+    for (let i = 0; i < $controlPanel.length; i++) {
+        if (!$($controlPanel.get(i)).val()) return false;
+    }
+    return true;
+};
+const createMessage = function ($controlPanel) {
     let message = '';
     for (let i = 0; i < $controlPanel.length; i++) {
         message += $($controlPanel.get(i)).val();
+    }
+    return message;
+};
+const sendAttempt = function () {
+    const path = $('.container:first');
+    const $controlPanel = $('#controlPanel select');
+    let message = createMessage($controlPanel);
+    if (!validateYourChoice($controlPanel)) {
+        $.notify({
+            title: '<strong>Caution!</strong>',
+            message: 'Choose all numbers for send answer!'
+        }, {
+            type: 'danger'
+        });
+        return;
+    }
+    if (!validateMessage(message)) {
+        $.notify({
+            title: '<strong>Caution!</strong>',
+            message: 'Numbers should not be repeated!'
+        }, {
+            type: 'danger'
+        });
+        return;
     }
     $.ajax({
         url: location.protocol + '//' + window.location.host + path.data('contextPath') + '/step/new' + '?' + $.param({
@@ -45,8 +82,12 @@ const sendAttempt = function () {
         type: "POST",
         success: function (result) {
             addLiInUl(result, message);
+            goToLastAnswer();
             let standardMessage = 'Attempt sent';
-            if ('COMPLETED' === result) standardMessage = 'Congratulations! You are win!';
+            if ('COMPLETED' === result) {
+                standardMessage = 'Congratulations! You are win!';
+                $('#startNewGame').css("visibility", "visible");
+            }
             $.notify({
                 title: '<strong>Complete!</strong>',
                 message: standardMessage
@@ -66,8 +107,13 @@ const sendAttempt = function () {
 
 };
 
+const goToLastAnswer = function () {
+    $('.list-unstyled div.card-body:last', window.parent.document).get(0).scrollIntoView();
+};
+
 const init = function () {
     $('#sendAttempt').on('click', sendAttempt);
+    goToLastAnswer();
 };
 
 $(window).on('load', init);

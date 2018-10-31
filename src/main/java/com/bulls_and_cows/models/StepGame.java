@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(name = "step_game")
 public class StepGame {
     private UUID id;
     private Game game;

@@ -7,7 +7,7 @@
     <script src='<c:url value="/web_resources/js/custom/game.js"/>'></script>
 </head>
 <body>
-<c:set var="gameSteps" value="${gameSteps}"/>
+<c:set var="gameSteps" value="${requestScope.gameSteps}"/>
 <div class="container" data-context-path="${pageContext.request.contextPath}">
     <c:import url="fragments/bodyHeader.jsp"/>
     <div class="row c-row">
@@ -16,7 +16,7 @@
                 <div class="col-8 offset-2">
                     <div class="card" data-path-for-message="<c:out value="step/new"/>">
                         <div class="card-header">Game</div>
-                        <div class="card-body" style="height:25rem;  overflow-y: scroll">
+                        <div id="scrollPanel" class="card-body" style="height:25rem;  overflow-y: scroll">
                             <ul class="list-unstyled">
                                 <c:forEach var="step" items="${gameSteps}">
                                     <div class="card-body">
@@ -115,7 +115,12 @@
                             </div>
                         </div>
                         <div class="card-body row">
-                            <div class="col">
+                            <div class="col-6">
+                                <a id="startNewGame" class="btn btn-primary float-left" style="visibility: hidden" href="<c:url value="/game/new"/>">
+                                    <span class="oi oi-task"></span>&nbsp;New game
+                                </a>
+                            </div>
+                            <div class="col-6">
                                 <button id="sendAttempt" type="button" class="btn float-right">
                                     <span class="oi oi-envelope-open"></span>&nbsp;Send attempt
                                 </button>

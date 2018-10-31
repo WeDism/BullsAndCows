@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "user_entity")
 public class User {
     private String nickname;
     private String password;

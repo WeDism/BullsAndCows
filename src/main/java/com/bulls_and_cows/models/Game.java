@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(name = "game")
 public class Game {
     private UUID id;
     private User user;

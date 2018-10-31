@@ -3,6 +3,7 @@ package com.bulls_and_cows.controllers;
 import com.bulls_and_cows.business_logic.helpers.GameHelper;
 import com.bulls_and_cows.models.Game;
 import com.bulls_and_cows.models.User;
+import com.bulls_and_cows.repositories.GameRepository;
 import com.bulls_and_cows.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,23 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class UserController {
     private static final Logger LOG = getLogger(UserController.class);
     private final UserRepository userRepository;
+    private final GameRepository gameRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, GameRepository gameRepository) {
         this.userRepository = userRepository;
+        this.gameRepository = gameRepository;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getUserView() {
+    public String getUserView(Authentication authentication, Model model) {
+        boolean gameByUserAndGameEndTimeIsNot =
+                this.gameRepository.existsGameByUserAndGameEndTimeIsNull(new User().setNickname(authentication.getName()));
+        if (!gameByUserAndGameEndTimeIsNot) {
+            model.addAttribute("style", "style=\"pointer-events: none;\"");
+            model.addAttribute("classForATag", "btn-info");
+        }
+        else model.addAttribute("classForATag", "btn-primary");
         return "user";
     }
 

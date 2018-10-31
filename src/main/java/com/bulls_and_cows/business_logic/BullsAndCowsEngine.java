@@ -22,12 +22,20 @@ public final class BullsAndCowsEngine {
     }
 
     public String generate() {
-        String value;
+        String number;
         do {
-            value = String.valueOf(new Random().nextInt(9999));
+            number = String.valueOf(new Random().nextInt(9999));
         }
-        while (!this.validate(value));
-        return value.length() == 3 ? "0" + value : value;
+        while (!this.validate(number));
+        return number.length() == 3 ? this.generateOneNumber(number) + number : number;
+    }
+
+    private String generateOneNumber(String number) {
+        String oneNumber;
+        do {
+            oneNumber = String.valueOf(new Random().nextInt(9));
+        } while (number.contains(oneNumber));
+        return oneNumber;
     }
 
     public boolean validate(String string) {

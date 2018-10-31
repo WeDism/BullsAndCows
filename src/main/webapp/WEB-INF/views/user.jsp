@@ -10,7 +10,7 @@
         <div class="offset-4 col-4 card-body">
         </div>
         <div class="offset-4 col-4 card-body">
-            <a class="btn btn-lg btn-primary btn-block" href="<c:url value="/game/resume"/>">Resume game</a>
+            <a class="btn btn-lg ${requestScope.classForATag} btn-block" href="<c:url value="/game/resume"/>" ${requestScope.style}>Resume game</a>
         </div>
         <div class="offset-4 col-4 card-body">
             <a class="btn btn-lg btn-primary btn-block" href="<c:url value="/game/new"/>">Create new game</a>
