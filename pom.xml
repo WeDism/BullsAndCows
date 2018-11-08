@@ -62,7 +62,7 @@
                 <jpa.hibernate.format_sql.pom>false</jpa.hibernate.format_sql.pom>
 
                 <h2.scope>compile</h2.scope>
-                <postgresql.scope>clean</postgresql.scope>
+                <postgresql.scope>provided</postgresql.scope>
             </properties>
         </profile>
     </profiles>
