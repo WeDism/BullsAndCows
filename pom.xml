@@ -37,11 +37,19 @@
                 <jpa.hibernate.format_sql.pom>false</jpa.hibernate.format_sql.pom>
 
                 <h2.scope>test</h2.scope>
-                <postgresql.scope>compile</postgresql.scope>
             </properties>
             <dependencies>
-
+                <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>42.2.1</version>
+                    <scope>${postgresql.scope}</scope>
+                </dependency>
             </dependencies>
+            <build>
+                <plugins></plugins>
+            </build>
         </profile>
         <profile>
             <id>profile-h2</id>
@@ -62,7 +70,6 @@
                 <jpa.hibernate.format_sql.pom>false</jpa.hibernate.format_sql.pom>
 
                 <h2.scope>compile</h2.scope>
-                <postgresql.scope>provided</postgresql.scope>
             </properties>
         </profile>
     </profiles>
@@ -152,13 +159,6 @@
     </build>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.1</version>
-            <scope>${postgresql.scope}</scope>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/javax.xml.ws/jaxws-api -->
         <dependency>
             <groupId>javax.xml.ws</groupId>
