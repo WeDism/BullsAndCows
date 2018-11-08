@@ -36,34 +36,30 @@
                 <jpa.hibernate.hbm2ddl.auto.pom>validate</jpa.hibernate.hbm2ddl.auto.pom>
                 <jpa.hibernate.format_sql.pom>false</jpa.hibernate.format_sql.pom>
 
-                <!--<h2.scope>test</h2.scope>-->
-            <!--</properties>-->
-            <!--<dependencies>-->
-                <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.postgresql/postgresql &ndash;&gt;-->
-                <!--<dependency>-->
-                    <!--<groupId>org.postgresql</groupId>-->
-                    <!--<artifactId>postgresql</artifactId>-->
-                    <!--<version>42.2.1</version>-->
-                <!--</dependency>-->
-            <!--</dependencies>-->
-        <!--</profile>-->
-        <!--<profile>-->
-            <!--<id>profile-h2</id>-->
-            <!--<activation>-->
-                <!--<activeByDefault>false</activeByDefault>-->
-            <!--</activation>-->
-            <!--<properties>-->
-                <!--<database.driver_class_name>org.h2.Driver</database.driver_class_name>-->
-                <!--<database.url>jdbc:h2:mem:h2db;DB_CLOSE_DELAY=-1</database.url>-->
-                <!--<database.username>sa</database.username>-->
-                <!--<database.password>sa</database.password>-->
+                <h2.scope>test</h2.scope>
+                <postgresql.scope>compile</postgresql.scope>
+            </properties>
+            <dependencies>
 
-                <!--<jpa.show_sql>true</jpa.show_sql>-->
-                <!--<jpa.generate_ddl>true</jpa.generate_ddl>-->
-                <!--<jpa.database>H2</jpa.database>-->
-                <!--<jpa.database_platform>org.hibernate.dialect.H2Dialect</jpa.database_platform>-->
-                <!--<jpa.hibernate.hbm2ddl.auto>create-drop</jpa.hibernate.hbm2ddl.auto>-->
-                <!--<jpa.hibernate.format_sql>false</jpa.hibernate.format_sql>-->
+            </dependencies>
+        </profile>
+        <profile>
+            <id>profile-h2</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <database.driver_class_name.pom>org.h2.Driver</database.driver_class_name.pom>
+                <database.url.pom>jdbc:h2:mem:h2db;DB_CLOSE_DELAY=-1</database.url.pom>
+                <database.username.pom>sa</database.username.pom>
+                <database.password.pom>sa</database.password.pom>
+
+                <jpa.show_sql.pom>true</jpa.show_sql.pom>
+                <jpa.generate_ddl.pom>true</jpa.generate_ddl.pom>
+                <jpa.database.pom>H2</jpa.database.pom>
+                <jpa.database_platform.pom>org.hibernate.dialect.H2Dialect</jpa.database_platform.pom>
+                <jpa.hibernate.hbm2ddl.auto.pom>create-drop</jpa.hibernate.hbm2ddl.auto.pom>
+                <jpa.hibernate.format_sql.pom>false</jpa.hibernate.format_sql.pom>
 
                 <h2.scope>compile</h2.scope>
                 <postgresql.scope>clean</postgresql.scope>
