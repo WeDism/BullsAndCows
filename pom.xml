@@ -44,12 +44,8 @@
                     <groupId>org.postgresql</groupId>
                     <artifactId>postgresql</artifactId>
                     <version>42.2.1</version>
-                    <scope>${postgresql.scope}</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins></plugins>
-            </build>
         </profile>
         <profile>
             <id>profile-h2</id>
