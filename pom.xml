@@ -17,24 +17,24 @@
         <jaxb.version>2.3.0</jaxb.version>
     </properties>
 
-    <!--<profiles>-->
-        <!--<profile>-->
-            <!--<id>profile-postgres</id>-->
-            <!--<activation>-->
-                <!--<activeByDefault>true</activeByDefault>-->
-            <!--</activation>-->
-            <!--<properties>-->
-                <!--<database.driver_class_name>org.postgresql.Driver</database.driver_class_name>-->
-                <!--<database.url>jdbc:postgresql://127.0.0.1:5432/bulls_and_cows</database.url>-->
-                <!--<database.username>postgres</database.username>-->
-                <!--<database.password>postgres</database.password>-->
+    <profiles>
+        <profile>
+            <id>profile-postgres</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <database.driver_class_name.pom>org.postgresql.Driver</database.driver_class_name.pom>
+                <database.url.pom>jdbc:postgresql://127.0.0.1:5432/bulls_and_cows</database.url.pom>
+                <database.username.pom>postgres</database.username.pom>
+                <database.password.pom>postgres</database.password.pom>
 
-                <!--<jpa.show_sql>true</jpa.show_sql>-->
-                <!--<jpa.generate_ddl>true</jpa.generate_ddl>-->
-                <!--<jpa.database>POSTGRESQL</jpa.database>-->
-                <!--<jpa.database_platform>org.hibernate.dialect.PostgreSQL95Dialect</jpa.database_platform>-->
-                <!--<jpa.hibernate.hbm2ddl.auto>validate</jpa.hibernate.hbm2ddl.auto>-->
-                <!--<jpa.hibernate.format_sql>false</jpa.hibernate.format_sql>-->
+                <jpa.show_sql.pom>true</jpa.show_sql.pom>
+                <jpa.generate_ddl.pom>true</jpa.generate_ddl.pom>
+                <jpa.database.pom>POSTGRESQL</jpa.database.pom>
+                <jpa.database_platform.pom>org.hibernate.dialect.PostgreSQL95Dialect</jpa.database_platform.pom>
+                <jpa.hibernate.hbm2ddl.auto.pom>validate</jpa.hibernate.hbm2ddl.auto.pom>
+                <jpa.hibernate.format_sql.pom>false</jpa.hibernate.format_sql.pom>
 
                 <!--<h2.scope>test</h2.scope>-->
             <!--</properties>-->
@@ -65,10 +65,10 @@
                 <!--<jpa.hibernate.hbm2ddl.auto>create-drop</jpa.hibernate.hbm2ddl.auto>-->
                 <!--<jpa.hibernate.format_sql>false</jpa.hibernate.format_sql>-->
 
-                <!--<h2.scope>compile</h2.scope>-->
-            <!--</properties>-->
-        <!--</profile>-->
-    <!--</profiles>-->
+                <h2.scope>compile</h2.scope>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencyManagement>
         <dependencies>
