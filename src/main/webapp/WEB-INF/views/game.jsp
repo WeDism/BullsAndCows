@@ -14,7 +14,7 @@
         <div class="col">
             <div class="card-deck col-12">
                 <div class="col-8 offset-2">
-                    <div class="card" data-path-for-message="<c:out value="step/new"/>">
+                    <div class="card" data-path-for-message="<c:out value="/user/step/new"/>">
                         <div class="card-header">Game</div>
                         <div id="scrollPanel" class="card-body" style="height:25rem;  overflow-y: scroll">
                             <ul class="list-unstyled">
@@ -116,7 +116,7 @@
                         </div>
                         <div class="card-body row">
                             <div class="col-6">
-                                <a id="startNewGame" class="btn btn-primary float-left" style="visibility: hidden" href="<c:url value="/game/new"/>">
+                                <a id="startNewGame" class="btn btn-primary float-left" style="visibility: hidden" href="<c:url value="/user/game/new"/>">
                                     <span class="oi oi-task"></span>&nbsp;New game
                                 </a>
                             </div>

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping(value = "game")
+@RequestMapping(value = "user/game")
 @Controller
 public class GameController {
     private static final Logger LOG = LoggerFactory.getLogger(GameController.class);
@@ -49,7 +49,7 @@ public class GameController {
         user.getGames().add(newGame);
 
         this.userRepository.save(user);
-        return "redirect:/game/resume";
+        return "redirect:/user/game/resume";
     }
 
     @RequestMapping(value = "resume", method = RequestMethod.GET)

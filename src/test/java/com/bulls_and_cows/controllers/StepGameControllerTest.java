@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class StepGameControllerTest extends ControllerInit {
 
     private final String PARAM_ANSWER = "answer";
-    private final String PART_REQUEST_STEP_NEW = "/step/new";
+    private final String PART_REQUEST_STEP_NEW = "/user/step/new";
 
     @Before
     public void setUp() {

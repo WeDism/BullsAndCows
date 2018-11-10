@@ -14,8 +14,6 @@ public interface BullsAndCowsEngine {
     String matchBullsAndCows(String riddle, String answer);
 
     default boolean validate(String string) {
-        if (string.length() < GameConstants.SIZE_QUESTION) return false;
-
         boolean validate = true;
         char[] chars = string.toCharArray();
         for (int i = 0; i < string.length(); i++) {

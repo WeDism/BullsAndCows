@@ -23,7 +23,7 @@ import java.util.Optional;
 import static com.bulls_and_cows.business_logic.consts.GameConstants.GAME_STATE;
 import static com.bulls_and_cows.business_logic.consts.GameConstants.SIZE_QUESTION;
 
-@RequestMapping(value = "step")
+@RequestMapping(value = "user/step")
 @Controller
 public class StepGameController {
     private final StepGameRepository stepGameRepository;

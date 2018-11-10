@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+
 import static com.bulls_and_cows.business_logic.BullsAndCowsMatcherTestData.*;
 import static com.bulls_and_cows.repositories.game.GameRepositoryTestData.FIRST_IVAN_GAME_TEMPLATE;
 import static com.bulls_and_cows.repositories.step_game.StepGameRepositoryTestData.FIFTH_STEP_GAME_TEMPLATE;
@@ -32,4 +34,15 @@ public class BullsAndCowsEngineTest extends DbInit {
     public void getResult() {
         Assert.assertThat(GameConstants.GAME_STATE, is(this.bullsAndCowsEngine.getResult(FIRST_IVAN_GAME_TEMPLATE, FIFTH_STEP_GAME_TEMPLATE)));
     }
+
+    @Test(expected = RuntimeException.class)
+    public void checkLengthStringsWithRE() {
+        this.bullsAndCowsEngine.matchBullsAndCows("1234", "456");
+    }
+
+    @Test()
+    public void checkLengthStringsWithoutRE() {
+        this.bullsAndCowsEngine.matchBullsAndCows("1234", "4561");
+    }
+
 }

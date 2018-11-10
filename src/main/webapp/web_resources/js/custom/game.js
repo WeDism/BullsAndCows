@@ -76,11 +76,21 @@ const sendAttempt = function () {
         return;
     }
     $.ajax({
-        url: location.protocol + '//' + window.location.host + path.data('contextPath') + '/step/new' + '?' + $.param({
+        url: location.protocol + '//' + window.location.host + path.data('contextPath') + '/user/step/new' + '?' + $.param({
             answer: message
         }),
         type: "POST",
         success: function (result) {
+            if (result.length > 30) {
+                $.notify({
+                    title: '<strong>Your session ended!</strong>',
+                    message: 'You will redirected'
+                }, {
+                    type: 'warning'
+                });
+                setTimeout(() => window.location.replace(location.protocol + '//' + window.location.host + path.data('contextPath')), 2000);
+                return;
+            }
             addLiInUl(result, message);
             goToLastAnswer();
             let standardMessage = 'Attempt sent';
@@ -95,14 +105,15 @@ const sendAttempt = function () {
                 type: 'success'
             });
         },
-        error: function (xhr) {
-            $.notify({
-                title: '<strong>Error!</strong>',
-                message: 'Attempt is not sent status: ' + xhr.status
-            }, {
-                type: 'danger'
-            });
-        }
+        error:
+            function (xhr) {
+                $.notify({
+                    title: '<strong>Error!</strong>',
+                    message: 'Attempt is not sent status: ' + xhr.status
+                }, {
+                    type: 'danger'
+                });
+            }
     })
 
 };

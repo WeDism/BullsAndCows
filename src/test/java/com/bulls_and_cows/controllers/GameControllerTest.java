@@ -24,12 +24,12 @@ public class GameControllerTest extends ControllerInit {
 
     @Test
     public void getNewGame() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = get("/game/new")
+        MockHttpServletRequestBuilder requestBuilder = get("/user/game/new")
                 .session(this.mockHttpSession);
 
         ResultActions perform = this.mockMvc.perform(requestBuilder);
         perform.andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/game/resume"));
+                .andExpect(redirectedUrl("/user/game/resume"));
 
         Assert.assertThat(2, is(this.userRepository.findOne(this.userIvan.getNickname()).getGames().size()));
 
@@ -37,7 +37,7 @@ public class GameControllerTest extends ControllerInit {
 
     @Test
     public void getResumeGame() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = get("/game/resume")
+        MockHttpServletRequestBuilder requestBuilder = get("/user/game/resume")
                 .session(this.mockHttpSession);
 
         Optional<Game> notCompletedGame = GameHelper.findNotCompletedGame(this.userIvan.getGames());

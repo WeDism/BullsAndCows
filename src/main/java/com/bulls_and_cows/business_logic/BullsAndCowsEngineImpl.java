@@ -1,5 +1,6 @@
 package com.bulls_and_cows.business_logic;
 
+import com.bulls_and_cows.business_logic.consts.GameConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -19,7 +20,7 @@ public final class BullsAndCowsEngineImpl implements BullsAndCowsEngine {
     private String generateOneNumber(String number) {
         String oneNumber;
         do {
-            oneNumber = String.valueOf(new Random().nextInt(9));
+            oneNumber = String.valueOf(new Random().nextInt(10));
         } while (number.contains(oneNumber));
         return oneNumber;
     }
@@ -52,7 +53,7 @@ public final class BullsAndCowsEngineImpl implements BullsAndCowsEngine {
     public String generate() {
         String number;
         do {
-            number = String.valueOf(new Random().nextInt(9999));
+            number = String.valueOf(new Random().nextInt(10_000));
         }
         while (!this.validate(number));
         return number.length() == 3 ? this.generateOneNumber(number) + number : number;
@@ -63,6 +64,12 @@ public final class BullsAndCowsEngineImpl implements BullsAndCowsEngine {
         Map<Integer, Character> countBulls = this.countBulls(riddle, answer);
         return this.countBulls(riddle, answer).size() + "B" +
                 this.countCows(riddle, answer, countBulls) + "C";
+    }
+
+    @Override
+    public boolean validate(String string) {
+        if (string.length() < GameConstants.SIZE_QUESTION) return false;
+        return BullsAndCowsEngine.super.validate(string);
     }
 
 }
